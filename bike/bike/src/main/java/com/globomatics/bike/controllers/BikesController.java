@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/api/v1/bikes")
+@RequestMapping(value = "/api/v1/bikes")
 public class BikesController {
     @Autowired
     private BikeRepository bikeRepository;
 
-    @GetMapping
+    @GetMapping()
     public List<Bike> list() {
        // List<Bike> bikes = new ArrayList<>();
         //return bikes;

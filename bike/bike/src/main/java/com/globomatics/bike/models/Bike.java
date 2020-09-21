@@ -2,6 +2,7 @@ package com.globomatics.bike.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,25 @@ public class Bike {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String name;
+    private String email;
+    private String phone;
+    private String model;
+    private String serialNumber;
+    private String purchasePrice;
+
+    public String getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(String purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    private String purchaseDate;
+    private boolean contact;
+
     public Long getId() {
         return id;
     }
@@ -24,16 +44,6 @@ public class Bike {
     public void setId(Long id) {
         this.id = id;
     }
-
-    private String name;
-    private String email;
-    private String phone;
-    private String model;
-    private BigDecimal serialNumber;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
-    private Date purchaseDate;
-    private boolean contact;
 
     public String getName() {
         return name;
@@ -67,19 +77,19 @@ public class Bike {
         this.model = model;
     }
 
-    public BigDecimal getSerialNumber() {
+    public String getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(BigDecimal serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
 
-    public Date getPurchaseDate() {
+    public String getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(Date purchaseDate) {
+    public void setPurchaseDate(String purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
@@ -90,4 +100,20 @@ public class Bike {
     public void setContact(boolean contact) {
         this.contact = contact;
     }
+
+    @Override
+    public String toString() {
+        return "Bike{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", model='" + model + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", purchasePrice='" + purchasePrice + '\'' +
+                ", purchaseDate='" + purchaseDate + '\'' +
+                ", contact=" + contact +
+                '}';
+    }
 }
+
